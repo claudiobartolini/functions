@@ -148,6 +148,4 @@ Now that you can call Box from your Box function, modify the sample Box function
 6. If your `passphrase` is wrong, you will get: `"Error: error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt"`
 7. If you pass an integer instead of a string for the `id` parameter of `getAppAuthClient()`, you wil get `"Please check the 'sub' claim."`
 8. If you forgot to authorize the app, you wil get: `"This app is not authorized by the enterprise admin"`
-9. If you get `"Task timed out after 3.00 seconds"`, you may be getting a network error or Box server error.
-Try increasing the "Timeout" value in "Advanced Settings" of the Lambda function's "Configuration" tab to 30 seconds in order
-to see more details of the error
+9. If you get `"Task timed out after 3.00 seconds"`, you may be getting a network error or Box server error or a Timeout error from the box function framework
