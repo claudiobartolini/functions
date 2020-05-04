@@ -23,7 +23,8 @@ This sample demonstrates how to call Box APIs from a Lambda function using the [
 
 #### Step 3. Create the Docker Container
 Environment variables:
-    * Paste the contents of your JSON config file into the `BOX_CONFIG` environment variable.
+    * Paste the contents of your JSON config file into a new file. Edit the file to assign the `BOX_CONFIG` environment
+    variable to the JSON string obtained (e.g. `BOX_CONFIG={ client_id : .... }` and save the file in the working directory 
         * *Storing the application config in an environment variable makes it easier to secure and manage*
 
 Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag
@@ -37,11 +38,11 @@ redirects a public port to a private port inside the container. Run the image yo
 
 `docker run -p 49160:8080 -env_file=<env_config_file> -d <username>/box-functions-poc`
 
-Note that `<env_config_file>` is the Box application config file that you created in step 1 and saved into the working directory
-
-Print the output of your app:
-
-Now you can call your app using curl (install if needed via: `sudo apt-get install curl`):
+Note that `<env_config_file>` is the Box application config file that you created in step 1 pasting the value of the file obtained from Box and assigning it to the `BOX_CONFIG` variable and saved into the working
+directory
+    
+#### Step 4. Test the Box function
+1. Now you can call your app using curl (install if needed via: `sudo apt-get install curl`):
 
 ```$ curl -i localhost:49160
 
@@ -52,13 +53,9 @@ Content-Length: 12
 ETag: W/"c-M6tWOb/Y57lesdjQuHeB1P/qTV0"
 Date: Mon, 13 Nov 2017 20:53:59 GMT
 Connection: keep-alive
-
-Hello world
 ```
-    
-#### Step 4. Test the Lambda function
-1. Press the "Test" button
-    * This Lambda function does not require any input, so just leave the sample test data as is and press "Save and test"
+   * The example Box function does not require any input, so curling a GET or POST with an empty body should work
+
 2. The result should be similar to the following JSON response:
 
     ```JSON
@@ -82,10 +79,10 @@ Hello world
     }
     ```
     
-3. Your Lambda function is sucessfully calling the Box API!
+3. Your Box function is sucessfully calling the Box API!
 
 #### About the sample code
-* This first section initializes the Lambda function (only run once):
+* This first section initializes the Box function (only run once):
     * First, it creates a `BoxSDK` object, initializing it with your application secrets from the `BOX_CONFIG` environment variable
     * Then, it creates a `BoxClient` object that obtains an access token for the Service Account in your Box enterprise
 *  The Lambda's `handler` function will be called each time the Lambda function is invoked:
@@ -103,8 +100,8 @@ If you need to add files or packages, you will need to rebuild the deployment pa
 4. Choose "Upload a .ZIP file" in the "Code entry type" drop-down button to load the new deployment package
 
 #### Next steps
-Now that you can call Box from your AWS Lambda function, modify the sample Lambda function to make other Box API calls
-using the [Box Node SDK](https://github.com/box/box-node-sdk):
+Now that you can call Box from your Box function, modify the sample Box function to make other Box API calls using the 
+[Box Node SDK](https://github.com/box/box-node-sdk):
 
 1. Create and view content owned by the service account
 
@@ -139,10 +136,8 @@ using the [Box Node SDK](https://github.com/box/box-node-sdk):
     client.folders.create(0, 'User Folder', (err, result) => {...});
     client.asSelf();
     ```
-    
-5. Use the AWS ["encryption helpers"](http://docs.aws.amazon.com/lambda/latest/dg/tutorial-env_console.html)
-   to encrypt the environment variables that hold the application secrets
-    * Modify the sample code to decrypt the secrets before creating the Box SDK and client objects
+
+5. The standard used is that of [Google Cloud Functions](https://cloud.google.com/functions), which in turn uses [Express.js](https://expressjs.com/)
 
 #### Troubleshooting
 1. If your `clientID` is wrong, you will get: `"Please check the 'iss' claim."`
@@ -156,26 +151,3 @@ using the [Box Node SDK](https://github.com/box/box-node-sdk):
 9. If you get `"Task timed out after 3.00 seconds"`, you may be getting a network error or Box server error.
 Try increasing the "Timeout" value in "Advanced Settings" of the Lambda function's "Configuration" tab to 30 seconds in order
 to see more details of the error
-
-Support
--------
-
-Need to contact us directly? You can post to the
-[Box Developer Forum](https://community.box.com/t5/Developer-Forum/bd-p/DeveloperForum).
-
-Copyright and License
----------------------
-
-Copyright 2017 Box, Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
