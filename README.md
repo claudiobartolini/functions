@@ -1,6 +1,6 @@
-# box-functions-poc
+# box-functions
 
-This sample demonstrates how to call Box APIs from a Lambda function using the [Box Node SDK](https://github.com/box/box-node-sdk).
+This sample demonstrates how to call Box APIs from a Box function using the [Box Node SDK](https://github.com/box/box-node-sdk).
 
 #### Step 1. Create a Box application
 1. Log into the [Box Developer Console](https://developers.box.com) in your Box developer account
