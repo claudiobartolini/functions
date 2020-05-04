@@ -1,4 +1,4 @@
-# box-node-lambda-sample
+# box-functions-poc
 
 This sample demonstrates how to call Box APIs from a Lambda function using the [Box Node SDK](https://github.com/box/box-node-sdk).
 
