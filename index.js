@@ -30,8 +30,8 @@ const client = sdk.getAppAuthClient('enterprise');
  *
  *  This sample function returns details of the current user (the service account).
  */
-exports.handler = (event, context, callback) => {
-    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
+exports.handler = (req, res) => {
+    console.log('Event: ' + req.body);
 
     // Get details on the current user  (the service account)
     client.users.get(client.CURRENT_USER_ID, null, (err, result) => {
@@ -47,7 +47,7 @@ exports.handler = (event, context, callback) => {
             response = result;
         }
 
-        console.log(`Response: ${JSON.stringify(response, null, 2)}`);
-        callback(null, response);
+        console.log('Response: ' + response);
+        res.status(200).send(response);
     });
 };
