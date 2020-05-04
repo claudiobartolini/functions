@@ -1,5 +1,5 @@
 /**
- * This sample demonstrates how to call Box APIs from a Lambda function using the Box Node SDK.
+ * This sample demonstrates how to call Box APIs from a Box function using the Box Node SDK.
  *
  * For step-by-step instructions on how to create and authorize a Box application,
  * see https://developer.box.com/guides/applications/.
