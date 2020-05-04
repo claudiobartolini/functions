@@ -2,7 +2,7 @@
  * This sample demonstrates how to call Box APIs from a Lambda function using the Box Node SDK.
  *
  * For step-by-step instructions on how to create and authorize a Box application,
- * see https://github.com/box/samples/tree/master/box-node-lambda-sample.
+ * see https://developer.box.com/guides/applications/.
  */
 
 'use strict';
@@ -29,6 +29,7 @@ const client = sdk.getAppAuthClient('enterprise');
  *  YOUR CODE GOES HERE!!!
  *
  *  This sample function returns details of the current user (the service account).
+ *  The syntax of the handler is made to work seamlessly on Google Cloud Functions, using Express.js (req, res) 
  */
 exports.handler = (req, res) => {
     console.log('Event: ' + req.body);
