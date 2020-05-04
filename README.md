@@ -12,8 +12,7 @@ This sample demonstrates how to call Box APIs from a Lambda function using the [
     * Press "Create App" and then "View Your App"
 3. Press "Generate a Public/Private Keypair"
     * *You may need to enter a 2-factor confirmation code*
-    * Save the JSON config file, which contains your application's secret key in the box-function-poc directory, replacing the
-        empty app.json file 
+    * Save the JSON config file, which contains your application's secret key in the box-function-poc directory. We'll refer to the file as <env_config_file> when instructing to run the docker container in step 3 
 
 #### Step 2. Authorize the application into your Box account
 1. Log into your Box developer account as an admin and go to the [Apps Tab](https://app.box.com/master/settings/openbox) of Enterprise Settings
@@ -33,32 +32,14 @@ your image so it's easier to find later using the docker images command:
 docker build -t <username>/box-functions-poc .
 
 Run the image
-Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag redirects a public port to a private port inside the container. Run the image you previously built:
+Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag
+redirects a public port to a private port inside the container. Run the image you previously built:
 
-docker run -p 49160:8080 -d <your username>/node-web-app
+docker run -p 49160:8080 -env_file=<env_config_file> -d <username>/box-functions-poc
+
+Note that <env_config_file> is the Box application config file that you created in step 1 and saved into the working directory
+
 Print the output of your app:
-
-# Get container ID
-$ docker ps
-
-# Print app output
-$ docker logs <container id>
-
-# Example
-Running on http://localhost:8080
-If you need to go inside the container you can use the exec command:
-
-# Enter the container
-$ docker exec -it <container id> /bin/bash
-Test
-To test your app, get the port of your app that Docker mapped:
-
-$ docker ps
-
-# Example
-ID            IMAGE                                COMMAND    ...   PORTS
-ecce33b30ebf  <your username>/node-web-app:latest  npm start  ...   49160->8080
-In the example above, Docker mapped the 8080 port inside of the container to the port 49160 on your machine.
 
 Now you can call your app using curl (install if needed via: sudo apt-get install curl):
 
@@ -73,7 +54,6 @@ Date: Mon, 13 Nov 2017 20:53:59 GMT
 Connection: keep-alive
 
 Hello world
-
     
 #### Step 4. Test the Lambda function
 1. Press the "Test" button
