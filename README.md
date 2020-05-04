@@ -12,7 +12,8 @@ This sample demonstrates how to call Box APIs from a Lambda function using the [
     * Press "Create App" and then "View Your App"
 3. Press "Generate a Public/Private Keypair"
     * *You may need to enter a 2-factor confirmation code*
-    * Save the JSON config file, which contains your application's secret key
+    * Save the JSON config file, which contains your application's secret key in the box-function-poc directory, replacing the
+        empty app.json file 
 
 #### Step 2. Authorize the application into your Box account
 1. Log into your Box developer account as an admin and go to the [Apps Tab](https://app.box.com/master/settings/openbox) of Enterprise Settings
@@ -21,27 +22,14 @@ This sample demonstrates how to call Box APIs from a Lambda function using the [
 3. Enter your "Client ID" from the developer console in the "API Key" field
 4. Your application is now authorized to access your Box account!
 
-#### Step 3. Create the AWS Lambda function
-1. Log into the [AWS Management Console](https://aws.amazon.com/console) and go to the Lambda Management Console
-2. Press "Create a Lambda function"
-    * Search for "box" and choose the "box-node-lambda-sample" blueprint
-    * *There is no need to configure a trigger for the Lambda function*
-    * Press "Next"
-3. Configure the lambda function
-    * Name = "box-node-lambda-sample"
-    * Environment variables:
-        * Paste the contents of your JSON config file into the `BOX_CONFIG` environment variable.
-            * *Storing the application config in an environment variable makes it easier to secure and manage*
-    * Role = "Create new role from template"
-    * Role Name = "box-node-lambda-sample-role"
-    * Policy Templates = Leave blank
-    * Leave all of the advanced settings with default values
-    * Press "Next"
-    * Review the information and press "Create function"
+#### Step 3. Create the Docker Container
+Environment variables:
+    * Paste the contents of your JSON config file into the `BOX_CONFIG` environment variable.
+        * *Storing the application config in an environment variable makes it easier to secure and manage*
 
 Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag your image so it's easier to find later using the docker images command:
 
-docker build -t <your username>/node-web-app .
+docker build -t <username>/box-functions-poc .
 Your image will now be listed by Docker:
 
 $ docker images
@@ -49,7 +37,7 @@ $ docker images
 # Example
 REPOSITORY                      TAG        ID              CREATED
 node                            10         1934b0b038d1    5 days ago
-<your username>/node-web-app    latest     d64d3505b0d2    1 minute ago
+<username>/box-functions-poc    latest     d64d3505b0d2    1 minute ago
 Run the image
 Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag redirects a public port to a private port inside the container. Run the image you previously built:
 
