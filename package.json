@@ -4,6 +4,7 @@
   "description": "This sample demonstrates how to call Box APIs from a Lambda function using the Box Node SDK.",
   "main": "index.js",
   "dependencies": {
+    "@google-cloud/functions-framework": "^1.5.1",
     "box-node-sdk": "^1.4.2"
   },
   "devDependencies": {
