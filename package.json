@@ -1,7 +1,7 @@
 {
-  "name": "box-node-lambda-sample",
-  "version": "1.4.2",
-  "description": "This sample demonstrates how to call Box APIs from a Lambda function using the Box Node SDK.",
+  "name": "box-functions-poc",
+  "version": "0.1.0",
+  "description": "This sample demonstrates how to call Box APIs from a Box function using the Box Node SDK.",
   "main": "index.js",
   "dependencies": {
     "@google-cloud/functions-framework": "^1.5.1",
@@ -17,11 +17,12 @@
     "eslint-plugin-react": "^6.10.0"
   },
   "scripts": {
+    "start": "functions-framework --target=handler",
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample index.js node_modules",
     "bp": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample-bp index.js lambda.json node_modules",
     "lint": "eslint index.js"
   },
-  "author": "Box <oss@box.com>",
+  "author": "Box <cbartolini@box.com>",
   "license": "Apache-2.0"
 }
