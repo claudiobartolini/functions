@@ -7,7 +7,7 @@ This sample demonstrates how to call Box APIs from a Box function using the [Box
 2. Select "Create New App"
     * Select "Custom App" and press "Next"
     * Select "OAuth 2.0 with JWT (Server Authentication)" and press "Next"
-    * Name the application "Box Node Lambda Sample - YOUR NAME"
+    * Name the application "Box Function Sample - YOUR NAME"
         * *Application names must be unique across Box*
     * Press "Create App" and then "View Your App"
 3. Press "Generate a Public/Private Keypair"
