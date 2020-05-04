@@ -27,17 +27,11 @@ Environment variables:
     * Paste the contents of your JSON config file into the `BOX_CONFIG` environment variable.
         * *Storing the application config in an environment variable makes it easier to secure and manage*
 
-Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag your image so it's easier to find later using the docker images command:
+Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag
+your image so it's easier to find later using the docker images command:
 
 docker build -t <username>/box-functions-poc .
-Your image will now be listed by Docker:
 
-$ docker images
-
-# Example
-REPOSITORY                      TAG        ID              CREATED
-node                            10         1934b0b038d1    5 days ago
-<username>/box-functions-poc    latest     d64d3505b0d2    1 minute ago
 Run the image
 Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag redirects a public port to a private port inside the container. Run the image you previously built:
 
