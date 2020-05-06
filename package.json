@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@google-cloud/functions-framework": "^1.5.1",
-    "box-node-sdk": "^1.4.2"
+    "box-node-sdk": "^1.4.2",
+    "nodemon": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
