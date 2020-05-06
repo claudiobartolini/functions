@@ -23,7 +23,7 @@ const sdk = BoxSDK.getPreconfiguredInstance(boxConfig);
  *
  * The client will automatically create and refresh the service account access token, as needed.
  */
-const client = sdk.getAppAuthClient('enterprise');
+const box = sdk.getAppAuthClient('enterprise');
 
 /**
  *  YOUR CODE GOES HERE!!!
@@ -35,7 +35,7 @@ exports.handler = (req, res) => {
     console.log('Event: ' + req.body);
 
     // Get details on the current user  (the service account)
-    client.users.get(client.CURRENT_USER_ID, null, (err, result) => {
+    box.users.get(client.CURRENT_USER_ID, null, (err, result) => {
         let response;
 
         if (err) {
