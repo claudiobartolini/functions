@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^6.10.0"
   },
   "scripts": {
-    "start": "functions-framework --target=handler",
+    "start": "functions-framework --target=handler --source=/usr/src/app/function",
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample index.js node_modules",
     "bp": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample-bp index.js lambda.json node_modules",
