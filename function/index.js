@@ -9,9 +9,8 @@
 
 /**
  * TODO: wrap the box configuration code into a proper module 
- * var client = require('box_functions');
  */
-// var client = require('../box.js');
+var client = require('../box.js');
 
 /**
  *  YOUR CODE GOES HERE!!!
@@ -20,7 +19,23 @@
  *  The syntax of the handler is made to work seamlessly on Google Cloud Functions, using Express.js (req, res) 
  */
 exports.handler = (req, res) => {
-//    client.folders.get('0', null, (err, result) => {
-        res.status(200).send('Hello new functions!');
-//    });
+    console.log('Event: ' + req.body);
+
+    // Get details on the current user  (the service account)
+    client.users.get(client.CURRENT_USER_ID, null, (err, result) => {
+        let response;
+
+        if (err) {
+            if (err.response && err.response.body) {
+                response = err.response.body;
+            } else {
+                response = err.toString();
+            }
+        } else {
+            response = result;
+        }
+
+        console.log('Response: ' + response);
+        res.status(200).send(response);
+    });
 };
