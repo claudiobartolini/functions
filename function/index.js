@@ -21,6 +21,6 @@
  */
 exports.handler = (req, res) => {
 //    client.folders.get('0', null, (err, result) => {
-        res.status(200).send('Hello newa functions!');
+        res.status(200).send('Hello new functions!');
 //    });
 };
