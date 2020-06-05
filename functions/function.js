@@ -29,5 +29,5 @@
  * 
  */
 
-exports.handler = (data, { boxClient }) => boxClient.folders.get('0')
+exports.handler = (data, { boxClient }) => boxClient.folders.get('77770927387')
 
