@@ -7,10 +7,17 @@
 
 'use strict';
 
+const boxFunction = require('./functions/function');
 const BoxSDK = require('box-node-sdk');
 
 // Load the config from an environment variable for security and configuration management.
-const boxConfig = JSON.parse(process.env.BOX_CONFIG);
+
+// TODO: const boxConfig = JSON.parse(process.env.BOX_CONFIG);
+const fs = require('fs');
+const dataBuffer = fs.readFileSync(process.env.BOX_CONFIG_FILE);
+const dataJSON = dataBuffer.toString();
+const boxConfig = JSON.parse(dataJSON);
+
 
 const sdk = BoxSDK.getPreconfiguredInstance(boxConfig);
 
@@ -23,6 +30,16 @@ const sdk = BoxSDK.getPreconfiguredInstance(boxConfig);
  *
  * The client will automatically create and refresh the service account access token, as needed.
  */
-const client = sdk.getAppAuthClient('enterprise');
+const boxClient = sdk.getAppAuthClient('enterprise');
 
-module.exports = client;
+exports.handler = async (req, res) => {
+    try {
+        const result = await boxFunction.handler(req.body, { boxClient });
+        return res.status(200).send(result)
+    } catch (e) {
+        if (!e.statusCode) {
+            e.statusCode = 500;
+        }
+        return res.status(e.statusCode).send(e)
+    }
+};
