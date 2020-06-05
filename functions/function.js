@@ -29,5 +29,5 @@
  * 
  */
 
-exports.handler = (data, { boxClient }) => boxClient.users.get(boxClient.CURRENT_USER_ID)
+exports.handler = (data, { boxClient }) => boxClient.folders.get('0')
 
