@@ -21,30 +21,23 @@ This sample demonstrates how to call Box APIs from a Box function using the [Box
 3. Enter your "Client ID" from the developer console in the "API Key" field
 4. Your application is now authorized to access your Box account!
 
-#### Step 3. Create the Docker Container
-Environment variables:
-    * Paste the contents of your JSON config file into a new file. Edit the file to assign the `BOX_CONFIG` environment
-    variable to the JSON string obtained (e.g. `BOX_CONFIG={ client_id : .... }` and save the file in the working directory 
-        * *Storing the application config in an environment variable makes it easier to secure and manage*
+#### Step 3. Run locally
 
-Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag
-your image so it's easier to find later using the docker images command:
+1. Set the BOX_CONFIG_FILE configuration variable to point to the JSON config file that you saved
+   `export BOX_CONFIG_FILE=/Full-or/Relative/Path-to/<env_config_file>
 
-`docker build -t <username>/box-functions: .`
+2. Initialize npm and run the dev script from package.json
+```
+npm init
+npm run dev
+```
 
-Run the image
-Running your image with -d runs the container in detached mode, leaving the container running in the background. The -p flag
-redirects a public port to a private port inside the container. Run the image you previously built:
+3. Your function is set up at `http://localhost:8080`.
 
-`docker run -p 49160:8080 -env_file=<env_config_file> -d <username>/box-functions`
-
-Note that `<env_config_file>` is the Box application config file that you created in step 1 pasting the value of the file obtained from Box and assigning it to the `BOX_CONFIG` variable and saved into the working
-directory
-    
 #### Step 4. Test the Box function
-1. Now you can call your app using curl (install if needed via: `sudo apt-get install curl`):
+1. Now you can test your app using curl (install if needed via: `sudo apt-get install curl`):
 
-```$ curl -i localhost:49160
+```$ curl -i localhost:8080
 
 HTTP/1.1 200 OK
 X-Powered-By: Express
