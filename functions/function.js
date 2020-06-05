@@ -23,11 +23,15 @@
  *  Example: the following Box function returns information about the user making the request
  *  exports.handler = (data, context) => {
  *      const boxClient = context.BoxClient;
- *      return boxClient.users.get(boxClient.CURRENT_USER_ID);
+ *      return boxClient.users.get('me');
  *  }
  *
  * 
  */
 
-exports.handler = (data, { boxClient }) => boxClient.users.get('me')
+// const validator = require('validator')
+
+const utils = require ('./utils')
+
+exports.handler = (data, { boxClient }) => utils.toString()
 
