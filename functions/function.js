@@ -29,9 +29,5 @@
  * 
  */
 
-// const validator = require('validator')
-
-const utils = require ('./utils')
-
-exports.handler = (data, { boxClient }) => utils.toString()
+exports.handler = (data, { boxClient }) => boxClient.users.get('me')
 
