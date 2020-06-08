@@ -2,7 +2,8 @@ version: '3'
 services:
   ide:
     image: theiaide/theia:latest
-    volumes: ./functions:/home/project
+    volumes: 
+      - ./functions:/home/project
   lb:
     image: nginx:alpine
     links:
