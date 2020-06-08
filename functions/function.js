@@ -20,14 +20,24 @@
  *  @param {object} context The event metadata: contextual information from logging and tracing
  *  in particular,  *  @param {object} context.boxClient is a box SDK client initialized with the context for the function (see documentation) 
  * 
+ *  'require'-ing local modules is permitted: both from a relative ('./some-module-here') or absolute ('/home/project/some-other-module)
+ *  var utils = require(./utils)
+ * 
+ *  'require-ing' npm modules is ok too
+ *  var validator = require(./validator)
+ *  TODO: this doesn't work just yet locally - but the would work in a production development e.g. onto Google Cloud Functions or Heroku 
+ * 
  *  Example: the following Box function returns information about the user making the request
  *  exports.handler = (data, context) => {
  *      const boxClient = context.BoxClient;
  *      return boxClient.users.get('me');
  *  }
- *
  * 
+ *  Enjoy!
  */
 
-exports.handler = (data, { boxClient }) => boxClient.users.get('me')
+exports.handler = (data, { boxClient }) => {
+    'Hello World'
+}
+
 
