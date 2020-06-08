@@ -14,6 +14,6 @@ services:
     ports:
       - '${PORT:-80}:80'
   functions:
-    image: Dockerfile
+    build: Dockerfile
     volumes:
       - .:/usr/src/app
