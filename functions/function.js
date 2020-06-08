@@ -39,5 +39,3 @@
 exports.handler = (data, { boxClient }) => {
     return boxClient.users.get('me')
 }
-
-

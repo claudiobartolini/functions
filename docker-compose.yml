@@ -2,6 +2,7 @@ version: '3'
 services:
   ide:
     image: theiaide/theia:latest
+    user: ${uid}
     volumes: 
       - ./functions:/home/project
   lb:
