@@ -37,7 +37,7 @@
  */
 
 exports.handler = (data, { boxClient }) => {
-    'Hello World'
+    return 'Hello World'
 }
 
 
