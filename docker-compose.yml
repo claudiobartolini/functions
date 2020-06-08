@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ide:
+    image: theiaide/theia:latest
+    volumes: ./functions:/home/project
+  lb:
+    image: nginx:alpine
+    links:
+     - ide
+     - functions
+    volumes:
+      - ./nginx:/etc/nginx/
+    ports:
+     - '${PORT:-80}:80'
+  functions:
+    image: Dockerfile
+    volumes:
+      - .:/usr/src/app
