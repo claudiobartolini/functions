@@ -6,12 +6,12 @@ services:
   lb:
     image: nginx:alpine
     links:
-     - ide
-     - functions
+      - ide
+      - functions
     volumes:
       - ./nginx:/etc/nginx/
     ports:
-     - '${PORT:-80}:80'
+      - '${PORT:-80}:80'
   functions:
     image: Dockerfile
     volumes:
