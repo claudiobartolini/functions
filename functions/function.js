@@ -37,7 +37,7 @@
  */
 
 exports.handler = (data, { boxClient }) => {
-    return 'Hello World'
+    return boxClient.users.get('me')
 }
 
 
