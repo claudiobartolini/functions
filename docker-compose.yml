@@ -5,9 +5,10 @@ services:
       context: .
       dockerfile: Dockerfile-ide 
     image: theiaide/theia:latest
-    user: ${uid}
     volumes: 
       - ./functions:/home/project
+    restart:
+      always
   lb:
     image: nginx:alpine
     links:
@@ -23,3 +24,5 @@ services:
       BOX_CONFIG_FILE: ./config/44168077_i6b5nddq_config.json
     volumes:
       - .:/usr/src/app
+    restart:
+      always

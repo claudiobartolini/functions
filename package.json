@@ -20,8 +20,8 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "framework": "functions-framework --target=handler",
-    "start": "env-cmd -f ./config/dev.env nodemon --exec npm run framework",
+    "gcf": "functions-framework --target=handler",
+    "start": "env-cmd -f ./config/dev.env nodemon --exec npm run gcf",
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample index.js node_modules",
     "bp": "rm -rf node_modules/asn1/tst; zip -rMM9 box-node-lambda-sample-bp index.js lambda.json node_modules",
