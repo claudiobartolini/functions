@@ -1,9 +1,6 @@
 version: '3'
 services:
   ide:
-    build:
-      context: .
-      dockerfile: Dockerfile-ide 
     image: theiaide/theia:latest
     volumes: 
       - ./functions:/home/project
